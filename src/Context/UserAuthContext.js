@@ -9,9 +9,12 @@ import {
   
 } from "firebase/auth";
 import { auth } from "../firebase/Fb";
+import {useNavigate} from 'react-router-dom'
 const userAuthContext = createContext();
 export function UserAuthContextProvider({ children }) {
+  const navigate = useNavigate()
   const [user, setUser] = useState({});
+  const [isLoading,setIsLoading] = useState(false)
   const [googleUser, setGoogleUser] = useState({});
   const [username,setUserName] = useState('')
   const [infoUser,setInfoUser] = useState({})
@@ -25,18 +28,25 @@ export function UserAuthContextProvider({ children }) {
     return signOut(auth);
   }
   const googleProvider = new GoogleAuthProvider()
-  const siginWithGoogle =async ()=>{
+  const siginWithGoogle =async ( )=>{
    try {
+    setIsLoading(true)
      const res = await signInWithPopup(auth,googleProvider)
-     setGoogleUser(res.user)
+     setIsLoading(false)
+     if(!isLoading){
+      setGoogleUser(res?.user)
+      navigate('/home')
+
+     }
    } catch (error) {
      console.log(error)
    }
  }
+ console.log(googleUser)
+ console.log(isLoading)
   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-   
      setUser(currentuser)
     
     });
@@ -44,6 +54,7 @@ export function UserAuthContextProvider({ children }) {
       unsubscribe();
     };
   }, []);
+ 
   return (
     <userAuthContext.Provider
       value={{ user, logIn, signUp, logOut,username,setUserName,siginWithGoogle,googleUser,setInfoUser,infoUser}}

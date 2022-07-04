@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Trispace:wght@400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trispace', sans-serif;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: #123f
+}
+.form-group{
+    width:100%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content:space-between;
+}
+.right-group{
+    width:50%;
+    display: flex;
+    background: hsla(217, 100%, 50%, 1);
+background: linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+background: -moz-linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+background: -webkit-linear-gradient(90deg, hsla(217, 100%, 50%, 1) 0%, hsla(186, 100%, 69%, 1) 100%);
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#0061FF", endColorstr="#60EFFF", GradientType=1 );
+    justify-content:center;
+    align-items:center;
+    height:100%;
+}
+.gambar{
+    padding: 10px 10px;
+}
+.img-right{
+    width: 400px;
+}
+.left-group{
+    width:50%;
+    background-color: #EAF6F6;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 100%;
+}
+.form{
+    width:500px;
+    border-radius: 10px;
+background: #e0e0e0;
+box-shadow:  20px 20px 60px #bebebe,
+             -20px -20px 60px #ffffff;
+    height:500px;
+}
+.text{
+    padding-top: 40px;
+
+}
+.welcome{
+    text-align:center;
+}
+.input{
+    margin-top:40px;
+    text-align: center;
+   
+}
+input{
+    width:90%;
+    padding:6px 6px;
+    background-color: transparent;
+    border:1px solid black;
+    border-radius:10px
+
+  
+}
+.google{
+    text-align:center;
+    width:70%;
+    margin:0 auto;
+    cursor: pointer;
+    display: flex;
+    justify-content:center;
+    height:60px;
+    margin-top: -20px;
+    border-radius: 50px;
+    border-radius: 50px;
+    border-radius: 50px;
+    background: #DC3545;
+    box-shadow: inset 50px 50px 100px #bb2d3b,
+                inset -50px -50px 100px #fd3d4f;
+    text-align: center;
+    align-self: center;
+    align-items: center;
+}
+.google-logo{
+    margin-right: 10px;
+}
+.google-input p{
+    font-weight: bold;
+    color:whitesmoke;
+}
+.submit{
+    width: 70%;
+    margin: 40px auto ;
+   
+    height:50px
+}
+.submit button {
+    background-color:blue;
+    width:100%;
+    height:100%;
+    border-radius: 50px;
+    font-weight: bold;
+    color:whitesmoke;
+    font-size:18px;
+    cursor: pointer;
+}
