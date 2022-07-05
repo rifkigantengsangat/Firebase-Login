@@ -4,9 +4,8 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  GoogleAuthProvider, signInWithPopup
- 
-  
+  signInWithRedirect,
+  GoogleAuthProvider, signInWithPopup,updateProfile
 } from "firebase/auth";
 import { auth } from "../firebase/Fb";
 import {useNavigate} from 'react-router-dom'
@@ -15,49 +14,41 @@ export function UserAuthContextProvider({ children }) {
   const navigate = useNavigate()
   const [user, setUser] = useState({});
   const [isLoading,setIsLoading] = useState(false)
-  const [googleUser, setGoogleUser] = useState({});
   const [username,setUserName] = useState('')
   const [infoUser,setInfoUser] = useState({})
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
-  function signUp(email, password) {
-     return createUserWithEmailAndPassword(auth, email, password)
+  const updateUserProfile =async(user,nama)=>{
+  updateProfile((user),{
+    displayName: nama
+  })
   }
-  function logOut() {
+  async function signUp(email, password) {
+    const data = await createUserWithEmailAndPassword(auth, email, password)
+     await updateUserProfile(data.user,username)
+  }
+ function logOut() {
     return signOut(auth);
   }
-  const googleProvider = new GoogleAuthProvider()
-  const siginWithGoogle =async ( )=>{
-   try {
-    setIsLoading(true)
-     const res = await signInWithPopup(auth,googleProvider)
-     setIsLoading(false)
-     if(!isLoading){
-      setGoogleUser(res?.user)
-      navigate('/home')
-
-     }
-   } catch (error) {
-     console.log(error)
-   }
+  const siginWithGoogle =  ( )=>{
+    const googleProvider = new GoogleAuthProvider()
+    signInWithRedirect(auth, googleProvider)
  }
- console.log(googleUser)
- console.log(isLoading)
-  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
+      console.log(currentuser)
      setUser(currentuser)
-    
+     console.log(user)
+
     });
-    return () => {
+        return () => {
       unsubscribe();
     };
   }, []);
- 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut,username,setUserName,siginWithGoogle,googleUser,setInfoUser,infoUser}}
+      value={{ user, logIn, signUp, logOut,username,setUserName,siginWithGoogle,setInfoUser,infoUser}}
     >
       {children}
     </userAuthContext.Provider>

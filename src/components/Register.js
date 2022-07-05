@@ -1,6 +1,7 @@
 import React, { useState,useContext,useEffect} from 'react'
 import {useUserAuth} from '../Context/UserAuthContext'
 import {useNavigate,Link} from 'react-router-dom'
+import './register.css'
 
 const Register = () => {
     const [email, setEmail] = useState("");
@@ -12,35 +13,44 @@ const Register = () => {
     const handleSubmit = async(e)=>{
         e.preventDefault();
         try {
-            await signUp(email,password )
-        
+         await signUp(email,password )
             navigate('/')
         } catch (error) {
             setError(error.message);
         }
     }
-useEffect(() => {
-  localStorage.setItem('user',JSON.stringify(username))
-},[username])
+  
+
   return (
-    <div>
+    <div className="container-signup">
+        <div className='card'>
+            <div className='container-card'>
         <form onSubmit={handleSubmit}>
-        <label>
+            <div className='form-div'>
+        <label className='label'>
                 username
-                <input type="text" name="username" onChange={(e)=> setUserName(e.target.value)}/>
+                <input className='input' type="text" name="username" onChange={(e)=> setUserName(e.target.value)}/>
             </label>
-            <label>
+            </div>
+            <div className='form-div'>
+            <label className='label'>
                 email
-                <input type="text" name="username" onChange={(e)=> setEmail(e.target.value)}/>
+                <input type="text"  className='input'name="username" onChange={(e)=> setEmail(e.target.value)}/>
             </label>
-            <label>
+            </div>
+            <div className='form-div'>
+            <label className='label'>
                 passWord
-                <input type="text" name="password" onChange={(e)=> setPassword(e.target.value)}/>
+                <input type="text" className='input' name="password" onChange={(e)=> setPassword(e.target.value)}/>
             </label>
+            </div>
             <button type='submit'>Masuk</button>
+            <Link to='/'> Sudah Punya Akun</Link>
         </form>
         <p>{error}</p>
-        <Link to='/'> Sudah Punya Akun</Link>
+       
+        </div>
+        </div>
     </div>
   )
 }
