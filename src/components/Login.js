@@ -50,7 +50,7 @@ const contoh = (e)=>{
     e.preventDefault()
 }
 return (
-    <div className="container">
+    <div className="container-home">
          <div className="form-group">
             <div className="right-group">
                 <div className="gambar">

@@ -16,6 +16,10 @@ export function UserAuthContextProvider({ children }) {
   const [isLoading,setIsLoading] = useState(false)
   const [username,setUserName] = useState('')
   const [infoUser,setInfoUser] = useState({})
+  const [category,setCategory] = useState([])
+  const [nameCategory,setNamecategory] = useState()
+  const [dataCategory,setDataCategory]=useState([])
+
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
@@ -35,11 +39,21 @@ export function UserAuthContextProvider({ children }) {
     const googleProvider = new GoogleAuthProvider()
     signInWithRedirect(auth, googleProvider)
  }
+ const fetchData = async(url)=>{
+  const response = await fetch(url)
+  const data = await response.json()
+  setCategory(data)
+ }
+ const fetcDataByCategoies=async()=>{
+  setIsLoading(true)
+  const response = await fetch(`https://fakestoreapi.com/products/category/${nameCategory}`)
+  const data = await response.json()
+  setDataCategory(data)
+  setIsLoading(false)
+ }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log(currentuser)
      setUser(currentuser)
-     console.log(user)
 
     });
         return () => {
@@ -48,7 +62,7 @@ export function UserAuthContextProvider({ children }) {
   }, []);
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut,username,setUserName,siginWithGoogle,setInfoUser,infoUser}}
+      value={{isLoading,setDataCategory,nameCategory, user, logIn, signUp, logOut,username,setUserName,siginWithGoogle,setInfoUser,infoUser,fetchData,category,fetcDataByCategoies,setNamecategory,dataCategory}}
     >
       {children}
     </userAuthContext.Provider>
