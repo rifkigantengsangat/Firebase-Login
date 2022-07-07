@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/latihan-fb/static/css/main.fbe5b4ac.css",
+    "main.js": "/latihan-fb/static/js/main.de381489.js",
+    "static/js/787.f4578033.chunk.js": "/latihan-fb/static/js/787.f4578033.chunk.js",
+    "static/media/login.svg": "/latihan-fb/static/media/login.18aee48e7a6fd48307c6308647ff0fdc.svg",
+    "static/media/google.svg": "/latihan-fb/static/media/google.66ae25beb1eb0655ac594978ee31ddb2.svg",
+    "index.html": "/latihan-fb/index.html",
+    "main.fbe5b4ac.css.map": "/latihan-fb/static/css/main.fbe5b4ac.css.map",
+    "main.de381489.js.map": "/latihan-fb/static/js/main.de381489.js.map",
+    "787.f4578033.chunk.js.map": "/latihan-fb/static/js/787.f4578033.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fbe5b4ac.css",
+    "static/js/main.de381489.js"
+  ]
+}
